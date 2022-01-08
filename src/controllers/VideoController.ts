@@ -10,7 +10,7 @@ import {
 
 import {promises as fs} from "fs";
 
-import { VideoService } from './VideoService';
+import { VideoService } from '../services/VideoService';
 
 // http://localhost:8070/ffmpeg/image?timestamp=${TIMESTAMP_IN_SECONDS}&url=${VIDEO_URL}
 @Route("ffmpeg/image")
