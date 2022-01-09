@@ -5,7 +5,16 @@ export class VideoService{
         //Promise wrapper for child process exec call because default only supports callbacks
         let result = await new Promise((resolve, reject) => {
             let fileName = Date.now();
-            exec(`ffmpeg/ffmpeg -ss ${seconds} -i ${url} -frames:v 1 -codec:v png -an screenshots/${fileName}.png`, (error, stdout, stderr) => {
+            /**
+             * Strangely, 
+             * when i run arch command on my mac, it gives me i386
+             * when i run os.arch here in the node app on my mac, then it gives me x64
+             * when i run os.arch in the node app on the docker image, then it gives me x64
+             * but
+             * when i run ffmpeg_i386 on my local either directly on the terminal or through the node app then it works but doesnt work on the docker image
+             * and when i run ffmpeg_x86_64 on the docker image then it works but doesnt work on my local directly or through the node app
+             */
+            exec(`ffmpeg/ffmpeg_x86_64 -ss ${seconds} -i ${url} -frames:v 1 -codec:v png -an screenshots/${fileName}.png`, (error, stdout, stderr) => {
                 if (error) {
                     console.log(`error: ${error.message}`);
                     return reject({error: error, errorMsg: 'Something went wrong'});
@@ -18,7 +27,7 @@ export class VideoService{
                     }else{
                         // console.log(`stderr: ${stderr}`);
                         console.log(`stdout: ${JSON.stringify(stdout)}`);
-                        return resolve({ msg: 'Generation successful', filename: `screenshots/${fileName}.png` });
+                        return resolve({ filename: `screenshots/${fileName}.png` });
                     }
                 }
             });

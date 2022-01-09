@@ -18,6 +18,8 @@
     "generate-routes": "yarn run tsoa routes",
     "compile": "yarn run tsc --outDir build --experimentalDecorators",
     "start-server": "node build/src/server.js",
-    "live-reload": "yarn run tsc --outDir build --experimentalDecorators && node build/src/server.js"
+    "live": "yarn run tsc --outDir build --experimentalDecorators && node build/src/server.js",
+    "docker-start-app": "yarn run tsoa routes && yarn run tsc --outDir build --experimentalDecorators && node build/src/server.js",
+    "generate-image": "docker build . -t PixCap-assignment-Harsh"
   }
 }
