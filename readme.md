@@ -11,9 +11,9 @@
 
 #### This project is built on Typesript using tsoa and Express
 
-### The command to run this project is "npm run live"
+#### The command to run this project is "npm run live"
+#### The command to generate the docker image locally is "npm run generate-image"
+#### The command to run the generated docker image is "npm run start-image"
 
-### The command to generate the docker image locally is "npm run generate-image"
-
-### The API endpoint is 
+#### The API endpoint is 
 `http://localhost:8070/ffmpeg/image/{TIMESTAMP_IN_SECONDS}?videoUrl={VIDEO_URL}`
