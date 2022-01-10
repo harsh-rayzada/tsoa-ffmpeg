@@ -14,7 +14,7 @@ export class VideoService{
              * when i run ffmpeg_i386 on my local either directly on the terminal or through the node app then it works but doesnt work on the docker image
              * and when i run ffmpeg_x86_64 on the docker image then it works but doesnt work on my local directly or through the node app
              */
-            exec(`ffmpeg/ffmpeg_x86_64 -ss ${seconds} -i ${url} -frames:v 1 -codec:v png -an screenshots/${fileName}.png`, (error, stdout, stderr) => {
+            exec(`ffmpeg/ffmpeg_x86_64 -ss ${seconds} -i ${url} -frames:v 1 -codec:v png -an ${fileName}.png`, (error, stdout, stderr) => {
                 if (error) {
                     console.log(`error: ${error.message}`);
                     return reject({error: error, errorMsg: 'Something went wrong'});
@@ -27,7 +27,7 @@ export class VideoService{
                     }else{
                         // console.log(`stderr: ${stderr}`);
                         console.log(`stdout: ${JSON.stringify(stdout)}`);
-                        return resolve({ filename: `screenshots/${fileName}.png` });
+                        return resolve({ filename: `${fileName}.png` });
                     }
                 }
             });

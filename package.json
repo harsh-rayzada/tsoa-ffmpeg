@@ -20,7 +20,7 @@
     "start-server": "node build/src/server.js",
     "live": "yarn run tsc --outDir build --experimentalDecorators && node build/src/server.js",
     "docker-start-app": "yarn run tsoa routes && yarn run tsc --outDir build --experimentalDecorators && node build/src/server.js",
-    "generate-image": "docker build . -t PixCap-assignment-Harsh",
-    "start-image": "docker run -p 8070:8070 -d PixCap-assignment-Harsh"
+    "generate-image": "docker build . -t harsh/pixcap/backend",
+    "start-image": "docker run -p 8070:8070 -d harsh/pixcap/backend"
   }
 }
