@@ -5,6 +5,7 @@ import {
     Path,
     Query,
     Route,
+    Tags,
     // SuccessResponse,
 } from "tsoa";
 
@@ -13,14 +14,20 @@ import { FileService } from "../services/FileService";
 
 // http://localhost:8070/ffmpeg/image?timestamp=${TIMESTAMP_IN_SECONDS}&url=${VIDEO_URL}
 @Route("ffmpeg/image")
+@Tags("VideoController")
 export class VideoController extends Controller{
     /**
      * 
      * looks like 2 query params are not yet implemented in tsoa
+     * 
      * hence the current implementation is done by considering 1 query param as path variable
+     * 
      * and the other one as the query param
+     * 
      * Please see - 
+     * 
      * https://github.com/lukeautry/tsoa/issues/353
+     * 
      * https://giters.com/lukeautry/tsoa/issues/900
      * 
      */
@@ -35,7 +42,7 @@ export class VideoController extends Controller{
         }else{
             try{
                 let fileData = await this.generateAndConvertScreenshot(timestamp, videoUrl);
-                return fileData;
+                return fileData as {file: string};
             }catch(err: any){
                 console.log(err);
                 return { errorMsg: 'Something went wrong!', error: err};

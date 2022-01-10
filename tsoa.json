@@ -8,5 +8,9 @@
     },
     "routes": {
       "routesDir": "build"
+    },
+    "swagger": { 
+      "outputDirectory": ".",
+      "entryFile": "src/server.ts"
     }
   }
